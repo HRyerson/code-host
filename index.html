@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Prime Comics</title>
+		<!-- Mobile-friendly Meta Tag -->
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, width=device-width" >
+		<!-- jQuery Mobile CSS file to make the project Mobile-friendly -->
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+		.imageHomelogo {
+			width: 100%
+			border-radius: 25px 5px 55px 0;
+		}
+	</head>
+	<body>
+		<!-- Every screen needs to be a <section> and needs an id Attribute -->
+		<section data-role="page" id="pgWelcome">
+			<!-- Main content is in <article> -->
+			<article role="main" class="ui-content">
+				<div class="divCenter">
+					<h1>Welcome to Our Information Directory of Thousands of Different Comics!</h1>
+					<img class="Homelogo" src="primecomicslogo.jpg" alt="Logo">
+					<!-- An <a> Tag link becomes a button with data-role="button" -->
+					<p><a href="#pgHome" data-role="button" data-icon="home" data-transition="flip">Home</a></p>
+				</div>
+			</article>
+		</section>
+
+		<!-- This section looks different because of data-theme="b" -->
+		<section data-role="page" data-theme="b" id="pgHome">
+			<!-- <header> or <footer> blocks stay at top or bottom of the screen with data-position=fixed" -->
+			<header data-role="header" data-position="fixed">
+				<h1>Save</h1>
+				<!-- A NavBar is made of <nav> Tag, <ul> and <li> Tags, plus the right data-role -->
+				<nav data-role="navbar">
+					<ul>
+						<li><a href="#pgHome" data-icon="home" data-transition="flip">Save</a></li>
+						<li><a href="#pgView" data-icon="bullets" data-transition="flip">View</a></li>
+					</ul>
+				</nav>
+				<!-- Adding a button to the <header> -->
+				<a href="#pgAbout" data-transition="pop" data-icon="info" data-iconpos="notext" class="ui-btn-right">About</a>
+			</header>
+			<article role="main" class="ui-content">
+				<h2>Add a comic</h2>
+				<form id="fmSaveComic" class="" action="index.html" method="post">
+					Name: <input type="text" id="inputName" name="" value="">
+					Number: <input type="number" id="inputNumber" name="" value="">
+					Year: <input type="number" id="inputYear" name="" value="">
+					<input type="submit" name="" value="Save">
+					<input type="reset" name="" value="Clear">
+				</form>
+			</article>
+			<footer data-role="footer" data-position="fixed">
+				<h4>Copyright &copy; 2019</h4>
+			</footer>
+		</section>
+
+		<section data-role="page" data-theme="b" id="pgView">
+			<header data-role="header" data-position="fixed">
+				<h1>View</h1>
+				<nav data-role="navbar">
+					<ul>
+						<li><a href="#pgHome" data-icon="home" data-transition="flip">Save</a></li>
+						<li><a href="#pgView" data-icon="bullets" data-transition="flip">View</a></li>
+					</ul>
+				</nav>
+				<a href="#pgAbout" data-transition="pop" data-icon="info" data-iconpos="notext" class="ui-btn-right">About</a>
+			</header>
+			<article role="main" class="ui-content">
+				<h2>Collection</h2>
+				<div id="divShow">
+					<!-- A simple Table -->
+					<table border='1' id="tableComics">
+						<tr><th>Name</th><th>#</th><th>Year</th></tr>
+					</table>
+				</div>
+			</article>
+			<footer data-role="footer" data-position="fixed">
+				<h4>Copyright &copy; 2019</h4>
+			</footer>
+		</section>
+
+		<!-- A pop-up screen. Note: data-dialog="true" -->
+		<section data-role="page" data-dialog="true" id="pgAbout">
+			<header data-role="header">
+				<h1>About</h1>
+			</header>
+			<article role="main" class="ui-content">
+				<h2>Hello</h2>
+			</article>
+		</section>
+
+		<!-- jQuery File to make writing JavaScript easier -->
+		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+		<!-- jQuery Mobile JavaScript file to make the project Mobile-friendly. Note: It's AFTER the jQuery file. -->
+		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+		<!-- For more info about creating Mobile-friendly sites with jQuery Mobile, visit https://jquerymobile.com -->
+		<!-- Embedded JavaScript for our form -->
+		<script type="text/javascript">
+			console.log("Hello, world!");
+			document.write("Write whatever you want here...");
+			//window.alert("Hello, everyone!");
+			var $elfmSaveComic = $("#fmSaveComic");
+			var $eldivShow = $("#divShow");
+//event listener for when someone clicks the save button
+			$elfmSaveComic.submit(function(event){fnSaveComic(event)});
+
+			function fnSaveComic (event){
+				event.preventDefault();
+				console.log("fnSaveComic(event) is running");
+
+				var $valinputName = $("#inputName").val();
+				var $valinputNumber = $("#inputNumber").val();
+				var $valinputYear = $("#inputYear").val();
+
+				console.log($valinputName);
+				console.log($valinputNumber);
+				console.log($valinputYear);
+				$("#divShow #tableComics tr:last").after("<tr><td>" + $valinputName + "</td><td>" + $valinputNumber + "</td><td>" + $valinputYear + "</td></tr>");
+				$elfmSaveComic[0].reset();
+			} //end of function fnSaveComic
+
+			</script>
+	</body>
+</html>
